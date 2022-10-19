@@ -9,9 +9,9 @@ function App() {
 
   return (
     <Routes>
-      {!isAuth && <Route path="/" exact element={<Login/>}/>}
-      {isAuth && <Route path="/home" element={<Home/>}/>}
-      <Route path="/home" element={<Home/>}/>
+      {!isAuth && <Route path="/movies-app" element={<Login/>}/>}
+      {isAuth && <Route path="home" element={<Home/>}/>}
+      <Route path="home" element={<Home/>}/>
       <Route path="signup" element={<Signup/>}/>
  </Routes>
   );
