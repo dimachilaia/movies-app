@@ -13,6 +13,7 @@ const Login = () => {
       dispatch(AuthActions.login())
       navigate('/home')
     }
+    
 
   return (
     <LoginForm onSubmit={loginHandler}>
@@ -48,10 +49,11 @@ const LoginForm = styled.form`
   margin:0 auto;
   margin-top:110px;
   border-radius: 20px;
+  
 
-  @media screen and (min-width:768px){
-  width:400px;
-  height:400px;
+  @media screen and (min-width:732px){
+      width:400px;
+      height:400px;
   h1{
      text-align:center;
   }
