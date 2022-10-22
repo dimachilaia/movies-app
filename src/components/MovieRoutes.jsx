@@ -6,7 +6,6 @@ import fiveth from '../assets/icon-nav-bookmark.svg'
 import sixth from '../assets/image-avatar.png'
 import styled from "styled-components"
 import { Link } from 'react-router-dom'
-import Input from './Input'
 
 const MovieRoutes = () => {
   return (
@@ -44,7 +43,7 @@ const HomeForm = styled.div`
   height:40px;
   align-items:center;
 
-  @media screen and (min-width: 732px){
+  @media screen and (min-width: 768px){
     display:flex;
     flex-direction:column;
     width:35px;
@@ -67,7 +66,11 @@ const ImagesForm = styled.div`
     cursor:pointer;
   }
 
-  @media screen and (min-width: 732px){
+  @media screen and (min-width: 768px){
+    margin-bottom:150px;
+    img{
+      margin: 10px;
+    }
   }
 
   img:hover{

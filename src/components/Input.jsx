@@ -3,33 +3,35 @@ import searchIcon from '../assets/icon-search.svg'
 
 const Input = () => {
   return (
-      <InputForm>
-         <div>
+         <InputForm>
             <img src={searchIcon} alt="image" />
             <input placeholder='Search for movies or TV series'/>
-         </div>
-        </InputForm>
+         </InputForm>
   )
 }
 
 export default Input
 
 const InputForm = styled.form`
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  margin-top:20px;
+      display:flex;
+      margin-top:13px;
+      align-items:center;
+      margin-left:25px;
 
-  div{
-    display:flex;
-    align-items:center;
-    padding-right:20px;
-  }
-  
+
+    @media screen and (min-width: 768px){
+      transform:translateY(25px)
+    }
+
+
   img{
-    width:24px;
-    height:24px;
-    padding-right:20px;
+    width:25px;
+    height:25px;
+    padding-right:10px;
+
+    @media screen and (min-width: 768px){
+     width:30px;
+    }
   }
 
  input{
@@ -40,5 +42,10 @@ const InputForm = styled.form`
   font-size:17px;
   height:20px;
   background-color:#10141E;
+
+  @media screen and (min-width: 768px){
+     font-size:22px;
+     width:400px;
+    }
  }
 `
