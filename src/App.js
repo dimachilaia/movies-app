@@ -12,20 +12,21 @@ import Input from "./components/Input";
 
 function App() {
   const [data, setData] = useState(myData)
+  const [output, setOutput] = useState([])
 
+  //
   const isAuth = useSelector(state=>state.auth.isAuthenticated)
   
   return (
-   
-    <Routes>
-      {!isAuth && <Route path="/movies-app" element={<Login/>}/>}
-      {isAuth && <Route path="home" element={<Home data={data}/>}/>}
-          <Route path="home" element={<Home data={data}/>}/>
-          <Route path="signup" element={<Signup data={data}/>}/>
-          <Route path="movies" element={<Movies data={data}/>}/>
-          <Route path="series" element={<Series data={data}/>}/>
-          <Route path="bookmarked" element={<Bookmarked/>}/>
-    </Routes>
+   <Routes>
+   {!isAuth && <Route path="/movies-app" element={<Login/>}/>}
+   {isAuth && <Route path="home" element={<Home data={data} output={output} setOutput ={setOutput}/>}/>}
+    <Route path="home" element={<Home data={data} output={output} setOutput ={setOutput}/>}/>
+    <Route path="signup" element={<Signup/>}/>
+    <Route path="movies" element={<Movies output={output} setOutput={setOutput}/>}/>
+    <Route path="series" element={<Series data={data} output={output} setOutput={setOutput}/>}/>
+    <Route path="bookmarked" element={<Bookmarked/>}/>
+   </Routes>
 
   );
 }

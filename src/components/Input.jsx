@@ -1,12 +1,29 @@
+import { useEffect, useRef, useState } from "react"
 import styled from "styled-components"
 import searchIcon from '../assets/icon-search.svg'
+import myData from '../data.json'
 
-const Input = () => {
+const Input = ({ setOutput}) => {
+  const [input, setInput] = useState('')
+
+  useEffect(()=>{
+    setOutput([])
+    {myData.filter((item)=>{
+      if(item.title.toLowerCase().includes(input.toLowerCase(''))){
+        setOutput((output)=>[...output, item])
+      }
+    })}
+  },[input])
+
+  const submitHandler = (e)=>{
+    e.preventDefault()
+  }
+ 
   return (
-         <InputForm>
-            <img src={searchIcon} alt="image" />
-            <input placeholder='Search for movies or TV series'/>
-         </InputForm>
+        <InputForm onSubmit={submitHandler}>
+        <img src={searchIcon} alt="search-icon"/>
+        <input placeholder='Search for movies or TV series' onChange={(e)=>setInput(e.target.value)}/>
+        </InputForm>
   )
 }
 
