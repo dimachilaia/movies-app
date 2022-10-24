@@ -6,8 +6,15 @@ import bookmarkedImage from '../assets/icon-bookmark-empty.svg'
 import { Trending } from './Trending'
 import { useDispatch } from 'react-redux'
 import {cartActions} from '../redux/CartSlice'
+import checkedImage from '../assets/icon-bookmark-full.svg'
 
 const Home = ({data, output, setOutput}) => {
+  // const [checked, setChecked] = useState(true)
+
+  // const checkedHandler = ()=>{
+  //   setChecked(prev=>!prev)
+  // }
+
   const dispatch = useDispatch()
  
   return (
@@ -20,23 +27,23 @@ const Home = ({data, output, setOutput}) => {
          <Input data={data} output={output} setOutput={setOutput}/>
          
         <TrendingForm >Recommended for you</TrendingForm>
-
-
-        <Trending/>
-
         
         <DivContainer>
         {output.map((item, index)=>{
           const {title, category, year} = item;
-
           const image = process.env.PUBLIC_URL + item.thumbnail.regular.large;
+
           return <MappedDiv key={index}>
           
-           <BookmarkImage>
-             <img src={bookmarkedImage} alt="Bookmark" onClick={()=>dispatch(cartActions.addToCart({title, category, year, image}))}/>
+          <BookmarkImage  onClick={()=>dispatch(cartActions.addToCart({title, category, year, image}))}>
+
+            <img src={bookmarkedImage} alt="bookmarkimg"/>            
            </BookmarkImage>
+
           
-          <img src={process.env.PUBLIC_URL + item.thumbnail.regular.large} alt="images"/>
+            
+           <img src={process.env.PUBLIC_URL + item.thumbnail.regular.large} alt="images" /> 
+
 
            <MovieTexts>
              <span>{item.year}</span>
@@ -59,7 +66,6 @@ const Home = ({data, output, setOutput}) => {
 export default Home
 
 
-
 const MainDiv = styled.div`
 
 @media screen and (min-width: 768px){
@@ -68,7 +74,6 @@ const MainDiv = styled.div`
 `
 
 const MappedDiv = styled.div`
-
   width:40%;
   padding:2px 5px;
 
@@ -81,6 +86,10 @@ const MappedDiv = styled.div`
   cursor:pointer;
   border-radius:10px;
  }
+ img:hover{
+  color:white;
+ }
+
 
  @media screen and (min-width: 615px){
    width:30%;
@@ -106,7 +115,7 @@ const TrendingForm = styled.p`
 
  @media screen and (min-width: 768px){
    width:24%;
-   font-size:24px;
+   font-size:28px;
    margin-top:50px;
    padding-left:10px;
  }
@@ -133,7 +142,7 @@ const MainHome = styled.div`
 const DivContainer = styled.div`
  display:flex;
  flex-wrap:wrap;
- justify-content:space-evenly;
+ justify-content:space-between;
 `
 
 
@@ -160,4 +169,5 @@ img{
   border-radius:0;
   cursor:pointer;
  }
+
 `

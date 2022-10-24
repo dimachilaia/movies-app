@@ -2,10 +2,13 @@ import styled from 'styled-components'
 import Input from './Input'
 import MovieRoutes from './MovieRoutes'
 import bookmarkedImage from '../assets/icon-bookmark-empty.svg'
+import { useDispatch } from 'react-redux'
+import { cartActions } from '../redux/CartSlice'
 
 const Movies = ({data, output, setOutput}) => {
- 
+  const dispatch = useDispatch()
 
+  
   return (
     <MainDiv >
      <MainHome>
@@ -19,9 +22,12 @@ const Movies = ({data, output, setOutput}) => {
 
       <DivContainer>
       {output.filter((item)=>item.category === "Movie").map((item, index)=>{
+        const {title, category, year} = item;
+        const image = process.env.PUBLIC_URL + item.thumbnail.regular.large;
+        
         return <MappedDiv key={index}>
         
-        <BookmarkImage>
+        <BookmarkImage onClick={()=>dispatch(cartActions.addToCart({title, category, year, image}))}>
           <img src={bookmarkedImage} alt="Bookmark"/>
        </BookmarkImage>
 
