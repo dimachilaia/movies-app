@@ -27,8 +27,9 @@ const Home = ({data, output, setOutput}) => {
         
         <DivContainer>
         {output.map((item, index)=>{
-          const {title, category, year, image} = item;
+          const {title, category, year} = item;
 
+          const image = process.env.PUBLIC_URL + item.thumbnail.regular.large;
           return <MappedDiv key={index}>
           
            <BookmarkImage>
