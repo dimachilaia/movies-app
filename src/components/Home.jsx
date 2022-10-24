@@ -3,9 +3,13 @@ import styled from 'styled-components'
 import Input from './Input'
 import MovieRoutes from './MovieRoutes'
 import bookmarkedImage from '../assets/icon-bookmark-empty.svg'
+import { Trending } from './Trending'
+import { useDispatch } from 'react-redux'
+import {cartActions} from '../redux/CartSlice'
 
 const Home = ({data, output, setOutput}) => {
-
+  const dispatch = useDispatch()
+ 
   return (
     <MainDiv >
       <MainHome>
@@ -17,15 +21,21 @@ const Home = ({data, output, setOutput}) => {
          
         <TrendingForm >Recommended for you</TrendingForm>
 
+
+        <Trending/>
+
+        
         <DivContainer>
         {output.map((item, index)=>{
+          const {title, category, year, image} = item;
+
           return <MappedDiv key={index}>
           
-          <BookmarkImage>
-            <img src={bookmarkedImage} alt="Bookmark"/>
-         </BookmarkImage>
-
-           <img src={process.env.PUBLIC_URL + item.thumbnail.regular.large} alt="images"/>
+           <BookmarkImage>
+             <img src={bookmarkedImage} alt="Bookmark" onClick={()=>dispatch(cartActions.addToCart({title, category, year, image}))}/>
+           </BookmarkImage>
+          
+          <img src={process.env.PUBLIC_URL + item.thumbnail.regular.large} alt="images"/>
 
            <MovieTexts>
              <span>{item.year}</span>
@@ -70,6 +80,7 @@ const MappedDiv = styled.div`
   cursor:pointer;
   border-radius:10px;
  }
+
  @media screen and (min-width: 615px){
    width:30%;
  }
@@ -94,7 +105,7 @@ const TrendingForm = styled.p`
 
  @media screen and (min-width: 768px){
    width:24%;
-   font-size:29px;
+   font-size:24px;
    margin-top:50px;
    padding-left:10px;
  }
