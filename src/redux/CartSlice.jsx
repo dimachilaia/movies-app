@@ -13,18 +13,14 @@ const CartSlice = createSlice({
       const existinItem = state.itemsList.find((item)=>item.title === newItem.title);
       if(existinItem){
         state.totalQuantity ++;
-        // existinItem.totalQuantity += newItem.price
       }else{
         state.itemsList.push({title:newItem.title, quantity:1, image:newItem.image, category:newItem.category, year:newItem.year})
       }
     },
-    toggleChecked (state, action){
-      const isChecked = state.selected === action.payload;
-      if(isChecked){
-        state.selected = undefined
-      }else{
-        state.selected = action.payload;
-      }
+    deleteFunc(state, action){
+      const itemId = action.payload
+      state.itemsList = state.itemsList.filter((item)=>item.title !== itemId)
+      console.log(itemId)
     }
   }
 })

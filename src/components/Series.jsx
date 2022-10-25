@@ -2,11 +2,19 @@ import styled from 'styled-components'
 import Input from './Input'
 import MovieRoutes from './MovieRoutes'
 import bookmarkedImage from '../assets/icon-bookmark-empty.svg'
-import { useDispatch } from 'react-redux'
-import { cartActions } from '../redux/CartSlice'
+import checkedImage from '../assets/icon-bookmark-full.svg'
 
 const Series = ({data, output, setOutput}) => {
-  const dispatch = useDispatch()
+
+  const checkedHandler = (check)=>{
+    const outputChecker = output.filter((item)=>{
+      if(item.title === check){
+        item.isBookmarked = !item.isBookmarked
+      }
+      return item;
+    })
+    setOutput(outputChecker)
+  }
 
   return (
     <MainDiv >
@@ -20,18 +28,18 @@ const Series = ({data, output, setOutput}) => {
       <TrendingForm>TV Series</TrendingForm>
 
       <DivContainer>
-      {output.filter((item)=>item.category === "TV Series").map((item, index)=>{
+        {output.filter((item)=>item.category === "TV Series").map((item, index)=>{
 
-        const {title, category, year} = item;
-        const image = process.env.PUBLIC_URL + item.thumbnail.regular.large;
+        const {title, isBookmarked} = item;
 
         return <MappedDiv key={index}>
         
-        <BookmarkImage onClick={()=>dispatch(cartActions.addToCart({title, category, year, image}))}>
-          <img src={bookmarkedImage} alt="Bookmark"/>
+        <BookmarkImage onClick={()=>checkedHandler(title)}>
+          <img src={isBookmarked ?checkedImage  : bookmarkedImage} alt="Bookmark"/>
        </BookmarkImage>
 
-         <img src={process.env.PUBLIC_URL + item.thumbnail.regular.large} alt="images"/>
+       <img src={process.env.PUBLIC_URL + item.thumbnail.regular.large} alt="images"/>
+
 
          <MovieTexts>
            <span>{item.year}</span>

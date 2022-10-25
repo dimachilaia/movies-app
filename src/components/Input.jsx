@@ -21,8 +21,8 @@ const Input = ({ setOutput}) => {
  
   return (
         <InputForm onSubmit={submitHandler}>
-        <img src={searchIcon} alt="search-icon"/>
-        <input placeholder='Search for movies or TV series' onChange={(e)=>setInput(e.target.value)}/>
+          <img src={searchIcon} alt="search-icon"/>
+          <input placeholder='Search for movies or TV series' onChange={(e)=>setInput(e.target.value)}/>
         </InputForm>
   )
 }

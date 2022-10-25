@@ -5,17 +5,19 @@ import fourthImage from '../assets/icon-nav-tv-series.svg'
 import fiveth from '../assets/icon-nav-bookmark.svg'
 import sixth from '../assets/image-avatar.png'
 import styled from "styled-components"
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
-const MovieRoutes = () => {
+const MovieRoutes = ({path}) => {
   return (
     <div>
     <HomeForm>
     <img src={firstImage} alt="logo"/>
       <ImagesForm>
-        <Link to="/home">
-         <img src={secondImage} alt="home-image"/>   
-        </Link>
+
+      <Link to='/home'>
+        <img src={secondImage} alt="home-image"/>
+      </Link>
+
          <Link to="/movies">
            <img src={thirdImage} alt="movies-image"/>    
          </Link> 
@@ -55,6 +57,10 @@ const HomeForm = styled.div`
   img{
     width:25px;
     height:20px;
+  }
+  img:active{
+    background-color:white;
+    border-radius:20px;
   }
 `
 

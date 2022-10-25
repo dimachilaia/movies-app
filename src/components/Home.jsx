@@ -3,44 +3,54 @@ import styled from 'styled-components'
 import Input from './Input'
 import MovieRoutes from './MovieRoutes'
 import bookmarkedImage from '../assets/icon-bookmark-empty.svg'
-import { Trending } from './Trending'
+import  Trending from './Trending'
 import { useDispatch } from 'react-redux'
 import {cartActions} from '../redux/CartSlice'
 import checkedImage from '../assets/icon-bookmark-full.svg'
+import { useSelector } from 'react-redux'
 
 const Home = ({data, output, setOutput}) => {
-  // const [checked, setChecked] = useState(true)
 
-  // const checkedHandler = ()=>{
-  //   setChecked(prev=>!prev)
-  // }
+  const checkedHandler = (title)=>{
+    const outputChecker = output.map((item)=>{
+      if(item.title === title){
+        item.isBookmarked = !item.isBookmarked
+      }
+      return item;
+     })
+     setOutput(outputChecker)
+  }
 
   const dispatch = useDispatch()
  
   return (
     <MainDiv >
       <MainHome>
-          <MovieRoutes/>
+          <MovieRoutes path="/home"/>
        </MainHome>
 
        <div>
          <Input data={data} output={output} setOutput={setOutput}/>
          
-        <TrendingForm >Recommended for you</TrendingForm>
+        <TrendingForm>Recommended for you</TrendingForm>
+
+        <Trending output={output}/>
         
         <DivContainer>
         {output.map((item, index)=>{
-          const {title, category, year} = item;
+          const {title, category, year, isBookmarked} = item;
           const image = process.env.PUBLIC_URL + item.thumbnail.regular.large;
 
+          
           return <MappedDiv key={index}>
           
-          <BookmarkImage  onClick={()=>dispatch(cartActions.addToCart({title, category, year, image}))}>
+          <BookmarkImage onClick={()=>dispatch(cartActions.addToCart({title, category, year, image}))}>
+          <div onClick={()=>checkedHandler(title)}>
+            <img src={isBookmarked ?  checkedImage :bookmarkedImage}  alt="bookmarkimg" />
+            </div>
 
-            <img src={bookmarkedImage} alt="bookmarkimg"/>            
+
            </BookmarkImage>
-
-          
             
            <img src={process.env.PUBLIC_URL + item.thumbnail.regular.large} alt="images" /> 
 
@@ -86,6 +96,7 @@ const MappedDiv = styled.div`
   cursor:pointer;
   border-radius:10px;
  }
+
  img:hover{
   color:white;
  }
@@ -144,7 +155,6 @@ const DivContainer = styled.div`
  flex-wrap:wrap;
  justify-content:space-between;
 `
-
 
 const BookmarkImage = styled.div`
   display:flex;

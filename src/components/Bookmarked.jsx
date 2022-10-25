@@ -2,12 +2,16 @@
 import React from 'react'
 import MovieRoutes from './MovieRoutes'
 // import Input from './Input'
-import bookmarkedImage from '../assets/icon-bookmark-empty.svg'
-import { useSelector } from 'react-redux'
 import styled from 'styled-components'
+import checkedImage from '../assets/icon-bookmark-full.svg'
+import Input from './Input'
 
-const Bookmarked = () => {
-  const cart = useSelector((state)=>state.cart.itemsList)
+const Bookmarked = ({output, setOutput}) => {
+
+ const deleteHandler = (check)=>{
+  const deleteOutput = output.filter((item)=>item.title !== check);
+  setOutput(deleteOutput)
+ }
 
   return (
     <MainDiv >
@@ -16,27 +20,30 @@ const Bookmarked = () => {
      </MainHome>
 
      <div>
+
+     <Input output={output} setOutput={setOutput}/>
        
       <TrendingForm >Bookmarked</TrendingForm>
 
       <DivContainer>
-      {cart.map((item, index)=>{
+      {output.filter((item)=>item.isBookmarked).map((item, index)=>{
+        const {title} = item;
        
         return <MappedDiv key={index}>
         
-        <BookmarkImage>
-          <img src={bookmarkedImage} alt="Bookmark"/>
+        <BookmarkImage >
+          <img src={checkedImage} alt="Bookmark" onClick={()=>deleteHandler(title)}/>
        </BookmarkImage>
 
-
-         <MovieTexts>
-           <img src={item.image}/>
+         <MovieTexts >
+         
+         <img src={process.env.PUBLIC_URL + item.thumbnail.regular.large} alt="images" /> 
            <span>{item.year}</span>
            <span>{item.category}</span>
            <span>{item.rating}</span>
          </MovieTexts>
 
-         <p style={{color:'white'}}>{item.title}</p>
+         <p style={{color:'white'}}>{title}</p>
        
 
         </MappedDiv>
