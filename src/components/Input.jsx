@@ -3,7 +3,7 @@ import styled from "styled-components"
 import searchIcon from '../assets/icon-search.svg'
 import myData from '../data.json'
 
-const Input = ({ setOutput}) => {
+const Input = ({ output, setOutput, placeholder, filteredMovies}) => {
   const [input, setInput] = useState('')
 
   useEffect(()=>{
@@ -18,11 +18,16 @@ const Input = ({ setOutput}) => {
   const submitHandler = (e)=>{
     e.preventDefault()
   }
+
+
  
   return (
         <InputForm onSubmit={submitHandler}>
+        <div>
           <img src={searchIcon} alt="search-icon"/>
-          <input placeholder='Search for movies or TV series' onChange={(e)=>setInput(e.target.value)}/>
+          <input placeholder={placeholder} onChange={(e)=>setInput(e.target.value)}/>
+        </div>
+        { input && <p style={{color:'white'}}>Found {filteredMovies.length} results for "{input}" </p>}
         </InputForm>
   )
 }
@@ -30,20 +35,21 @@ const Input = ({ setOutput}) => {
 export default Input
 
 const InputForm = styled.form`
-      display:flex;
       margin-top:13px;
-      align-items:center;
-      margin-left:25px;
+      margin-left:17px;
 
 
     @media screen and (min-width: 768px){
-      transform:translateY(25px)
+      transform:translateY(25px);
+      margin-left:10px;
+
     }
 
 
   img{
     width:25px;
     height:25px;
+    transform:translateY(5px);
     padding-right:10px;
 
     @media screen and (min-width: 768px){

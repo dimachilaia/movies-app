@@ -4,10 +4,9 @@ import Input from './Input'
 import MovieRoutes from './MovieRoutes'
 import bookmarkedImage from '../assets/icon-bookmark-empty.svg'
 import  Trending from './Trending'
-import { useDispatch } from 'react-redux'
-import {cartActions} from '../redux/CartSlice'
 import checkedImage from '../assets/icon-bookmark-full.svg'
-import { useSelector } from 'react-redux'
+import iconPlay from '../assets/icon-play.svg'
+
 
 const Home = ({data, output, setOutput}) => {
 
@@ -21,8 +20,8 @@ const Home = ({data, output, setOutput}) => {
      setOutput(outputChecker)
   }
 
-  const dispatch = useDispatch()
- 
+  const placeholder = 'Search for Movies and TV Series';
+
   return (
     <MainDiv >
       <MainHome>
@@ -30,27 +29,31 @@ const Home = ({data, output, setOutput}) => {
        </MainHome>
 
        <div>
-         <Input data={data} output={output} setOutput={setOutput}/>
-         
+         <Input data={data} output={output} setOutput={setOutput} placeholder={placeholder} filteredMovies ={output}/>
+          
         <TrendingForm>Recommended for you</TrendingForm>
+
 
         <Trending output={output}/>
         
+        
         <DivContainer>
         {output.map((item, index)=>{
-          const {title, category, year, isBookmarked} = item;
-          const image = process.env.PUBLIC_URL + item.thumbnail.regular.large;
+          const {title, isBookmarked} = item;
 
-          
           return <MappedDiv key={index}>
           
-          <BookmarkImage onClick={()=>dispatch(cartActions.addToCart({title, category, year, image}))}>
-          <div onClick={()=>checkedHandler(title)}>
-            <img src={isBookmarked ?  checkedImage :bookmarkedImage}  alt="bookmarkimg" />
-            </div>
-
-
+          <div>
+          <BookmarkImage onClick={()=>checkedHandler(title)}>
+            <img src={isBookmarked ? checkedImage : bookmarkedImage}  alt="bookmarkimg" />
            </BookmarkImage>
+
+           <PlayImage >
+            <div>
+              <img src={iconPlay} alt="Bookmark"/>
+              <p>Play</p>
+            </div>
+        </PlayImage>
             
            <img src={process.env.PUBLIC_URL + item.thumbnail.regular.large} alt="images" /> 
 
@@ -63,7 +66,7 @@ const Home = ({data, output, setOutput}) => {
 
            <p style={{color:'white'}}>{item.title}</p>
          
-
+           </div>
           </MappedDiv>
           })}
 
@@ -76,8 +79,8 @@ const Home = ({data, output, setOutput}) => {
 export default Home
 
 
-const MainDiv = styled.div`
 
+const MainDiv = styled.div`
 @media screen and (min-width: 768px){
    display:flex;
  }
@@ -86,6 +89,9 @@ const MainDiv = styled.div`
 const MappedDiv = styled.div`
   width:40%;
   padding:2px 5px;
+  div:hover{
+    opacity:0.7;
+  }
 
   p{
     font-size:14px;
@@ -97,9 +103,7 @@ const MappedDiv = styled.div`
   border-radius:10px;
  }
 
- img:hover{
-  color:white;
- }
+ 
 
 
  @media screen and (min-width: 615px){
@@ -153,7 +157,14 @@ const MainHome = styled.div`
 const DivContainer = styled.div`
  display:flex;
  flex-wrap:wrap;
- justify-content:space-between;
+ justify-content:space-evenly;
+
+ @media screen and (min-width: 660px){
+  margin-left:20px;
+ }
+ @media screen and (min-width: 768px){
+  margin-left:0px;
+ }
 `
 
 const BookmarkImage = styled.div`
@@ -179,5 +190,52 @@ img{
   border-radius:0;
   cursor:pointer;
  }
+
+
+`
+
+const PlayImage = styled.div`
+ display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:80%;
+  mix-blend-mode: normal;
+  position:absolute;
+  opacity: 0.2;
+  transform:translate(40px, 30px);
+  margin-top:5px;
+
+  @media screen and (min-width: 1024px){
+  transform:translate(100px,70px);
+  opacity:0.5;
+ }
+img{
+  width:20px;
+  border-radius:0;
+  cursor:pointer;
+ }
+
+ div{
+  display:flex;
+  justify-content:space-evenly;
+  align-items:center;
+  cursor:pointer;
+  gap:2px;
+  width:80px;
+  opacity: 0.1;
+  border-radius: 28.5px;
+  background-color:#5A698F;
+
+  @media screen and (min-width: 1024px){
+   width:100px;
+   display:flex;
+   justify-content:space-around;
+   height:50px;
+ }
+ }
+
+div:hover{
+  opacity:1;
+}
 
 `

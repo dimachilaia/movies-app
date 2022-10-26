@@ -5,13 +5,22 @@ import MovieRoutes from './MovieRoutes'
 import styled from 'styled-components'
 import checkedImage from '../assets/icon-bookmark-full.svg'
 import Input from './Input'
+import bookmarkedImage from '../assets/icon-bookmark-empty.svg'
+
 
 const Bookmarked = ({output, setOutput}) => {
 
  const deleteHandler = (check)=>{
-  const deleteOutput = output.filter((item)=>item.title !== check);
-  setOutput(deleteOutput)
- }
+  const deleteFunc = output.filter((item)=>{
+    if(item.title === check){
+      item.isBookmarked  = !item.isBookmarked
+    }
+    return item
+  })
+  setOutput(deleteFunc)
+}
+
+const placeholder = 'Search for Bookmarked Movies'
 
   return (
     <MainDiv >
@@ -21,18 +30,19 @@ const Bookmarked = ({output, setOutput}) => {
 
      <div>
 
-     <Input output={output} setOutput={setOutput}/>
-       
-      <TrendingForm >Bookmarked</TrendingForm>
+     <Input output={output} setOutput={setOutput} placeholder={placeholder} />
 
+       
+      <TrendingForm>Bookmarked</TrendingForm>
+      
       <DivContainer>
-      {output.filter((item)=>item.isBookmarked).map((item, index)=>{
-        const {title} = item;
+       {output.filter((item)=>item.isBookmarked).map((item, index)=>{
+        const {title, isBookmarked} = item;
        
         return <MappedDiv key={index}>
         
         <BookmarkImage >
-          <img src={checkedImage} alt="Bookmark" onClick={()=>deleteHandler(title)}/>
+          <img src={checkedImage } alt="Bookmark" onClick={()=>deleteHandler(title)}/>
        </BookmarkImage>
 
          <MovieTexts >
@@ -110,10 +120,9 @@ const TrendingForm = styled.p`
 
 `
 const MovieTexts = styled.div`
-
    span{
+    font-size:14px;
     color:#5A698F;
-    font-size: 12px;
     font-weight: 300;
     padding:1px 5px;
     line-height: 14px;
@@ -130,7 +139,7 @@ const MainHome = styled.div`
 const DivContainer = styled.div`
  display:flex;
  flex-wrap:wrap;
- justify-content:space-around;
+ justify-content:space-evenly;
 `
 
 
