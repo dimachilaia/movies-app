@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,500;1,600&family=Outfit:wght@200;300;400;500;600;700&family=Overpass:wght@300&family=Space+Mono:ital,wght@0,700;1,400&display=swap');
 
+* { min-height: 0; min-width: 0;}
 
 body {
   margin: 0;

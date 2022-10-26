@@ -27,12 +27,11 @@ const Movies = ({data, setData,output, setOutput}) => {
         <MovieRoutes path = "/movies"/>
      </MainHome>
 
-     <div>
+     <Tablet >
        <Input data={data} output={output} setOutput={setOutput} placeholder={placeholder} filteredMovies = {filteredMovies}/>
        
       <TrendingForm>Movies</TrendingForm>
 
-      <Trending/>
       
       <DivContainer>
       {output.filter((item)=>item.category === "Movie").map((item, index)=>{
@@ -66,7 +65,7 @@ const Movies = ({data, setData,output, setOutput}) => {
         })}
 
       </DivContainer>
-      </div>
+      </Tablet>
      </MainDiv>
   )
 }
@@ -98,8 +97,6 @@ const MappedDiv = styled.div`
   cursor:pointer;
   border-radius:10px;
  }
-
- 
 
 
  @media screen and (min-width: 615px){
@@ -234,4 +231,10 @@ div:hover{
   opacity:1;
 }
 
+`
+
+const Tablet = styled.div`
+ @media screen and (min-width: 768px){
+   margin-left:80px;
+ }
 `

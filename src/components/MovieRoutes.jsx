@@ -7,26 +7,34 @@ import sixth from '../assets/image-avatar.png'
 import styled from "styled-components"
 import { Link, NavLink } from 'react-router-dom'
 
-const MovieRoutes = ({path}) => {
+const MovieRoutes = () => {
+  const first = <img src={secondImage} alt="home-image"/>
+
+
   return (
     <div>
     <HomeForm>
     <img src={firstImage} alt="logo"/>
       <ImagesForm>
 
-      <Link to='/home'>
-        <img src={secondImage} alt="home-image"/>
-      </Link>
 
-         <Link to="/movies">
+      <NavLink to='/home'  style={({ isActive }) => 
+      (isActive ? {opacity: '1'} : {opacity: '0.26'})}>
+        <img src={secondImage} alt="home-image"/>
+      </NavLink>
+
+         <NavLink to="/movies" style={({ isActive }) => 
+         (isActive ? {opacity: '1'} : {opacity: '0.26'})}>
            <img src={thirdImage} alt="movies-image"/>    
-         </Link> 
-         <Link to="/series">
+         </NavLink> 
+         <NavLink to="/series" style={({ isActive }) => 
+         (isActive ? {opacity: '1'} : {opacity: '0.26'})}>
            <img src={fourthImage} alt="tvseries-image"/>    
-         </Link>
-         <Link to="/bookmarked">
+         </NavLink>
+         <NavLink to="/bookmarked" style={({ isActive }) => 
+         (isActive ? {opacity: '1'} : {opacity: '0.26'})}>
            <img src={fiveth} alt="bookmarked-image"/> 
-         </Link>
+         </NavLink>
       </ImagesForm>   
     <img src={sixth} alt="avatar-image"/>    
  </HomeForm>
@@ -58,10 +66,7 @@ const HomeForm = styled.div`
     width:25px;
     height:20px;
   }
-  img:active{
-    background-color:white;
-    border-radius:20px;
-  }
+  
 `
 
 const ImagesForm = styled.div`
@@ -80,7 +85,7 @@ const ImagesForm = styled.div`
   }
 
   img:hover{
-    opacity:0.7;
+   opacity:0.2;
   }
 
 `

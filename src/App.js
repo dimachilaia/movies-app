@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import {Routes, Route} from 'react-router-dom'
@@ -8,12 +8,11 @@ import Movies from "./components/Movies";
 import Series from "./components/Series";
 import Bookmarked from "./components/Bookmarked";
 import myData from './data.json'
-import Input from "./components/Input";
 
 function App() {
   const [data, setData] = useState(myData)
   const [output, setOutput] = useState(myData)
-
+  
   //
   const isAuth = useSelector(state=>state.auth.isAuthenticated)
   

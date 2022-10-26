@@ -23,19 +23,24 @@ const Home = ({data, output, setOutput}) => {
   const placeholder = 'Search for Movies and TV Series';
 
   return (
-    <MainDiv >
+   <div>
+
+   
+
+    <MainDiv>
+    
       <MainHome>
           <MovieRoutes path="/home"/>
        </MainHome>
 
-       <div>
+
+       <Tablet >
          <Input data={data} output={output} setOutput={setOutput} placeholder={placeholder} filteredMovies ={output}/>
-          
+
+         <Trending output={output}/>
+
         <TrendingForm>Recommended for you</TrendingForm>
 
-
-        <Trending output={output}/>
-        
         
         <DivContainer>
         {output.map((item, index)=>{
@@ -71,8 +76,9 @@ const Home = ({data, output, setOutput}) => {
           })}
 
         </DivContainer>
-        </div>
+        </Tablet>
        </MainDiv>
+       </div>
   )
 }
 
@@ -82,13 +88,17 @@ export default Home
 
 const MainDiv = styled.div`
 @media screen and (min-width: 768px){
-   display:flex;
- }
+  display:flex;
+  
+}
 `
 
 const MappedDiv = styled.div`
   width:40%;
-  padding:2px 5px;
+  display:flex;
+  
+  @media screen and (min-width: 768px){
+ }
   div:hover{
     opacity:0.7;
   }
@@ -111,6 +121,7 @@ const MappedDiv = styled.div`
  }
  @media screen and (min-width: 768px){
    width:30%;
+
  }
  @media screen and (min-width: 1024px){
    width:27%;
@@ -136,6 +147,11 @@ const TrendingForm = styled.p`
  }
 
 `
+const Tablet = styled.div`
+ @media screen and (min-width: 768px){
+  margin-left:120px;
+ }
+`
 const MovieTexts = styled.div`
 
    span{
@@ -157,13 +173,25 @@ const MainHome = styled.div`
 const DivContainer = styled.div`
  display:flex;
  flex-wrap:wrap;
- justify-content:space-evenly;
+ margin-left:20px;
+ gap:30px;
 
  @media screen and (min-width: 660px){
   margin-left:20px;
+  margin-left:20px;
+ gap:30px;
  }
  @media screen and (min-width: 768px){
   margin-left:0px;
+  margin-left:0px;
+  gap:0px;
+  margin:0 auto;
+ }
+ @media screen and (min-width: 1024px){
+  gap:50px;
+ }
+ @media screen and (min-width: 1250px){
+  gap:10px;
  }
 `
 
@@ -186,7 +214,7 @@ const BookmarkImage = styled.div`
    
  }
 img{
-  width:11.5px;
+  width:14px;
   border-radius:0;
   cursor:pointer;
  }

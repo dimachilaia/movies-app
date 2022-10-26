@@ -21,52 +21,51 @@ const Series = ({data, output, setOutput}) => {
 
 
   return (
-    <MainDiv >
-     <MainHome>
-        <MovieRoutes/>
-     </MainHome>
-
-     <div>
-       <Input data={data} output={output} setOutput={setOutput} placeholder={placeholder} filteredMovies={filteredTVSeries}/>
-       
-      <TrendingForm>TV Series</TrendingForm>
-
-      <DivContainer>
+      <MainDiv >
+       <MainHome>
+          <MovieRoutes path = "/series"/>
+       </MainHome>
+  
+       <Tablet >
+         <Input data={data} output={output} setOutput={setOutput} placeholder={placeholder} filteredMovies = {filteredTVSeries}/>
+         
+        <TrendingForm>TV Series</TrendingForm>
+  
+        
+        <DivContainer>
         {output.filter((item)=>item.category === "TV Series").map((item, index)=>{
-
-        const {title, isBookmarked} = item;
-
-        return <MappedDiv key={index}>
-        <div>
-        <BookmarkImage onClick={()=>checkedHandler(title)}>
-          <img src={isBookmarked ?checkedImage  : bookmarkedImage} alt="Bookmark"/>
-       </BookmarkImage>
-
-       <PlayImage >
-       <div>
-        <img src={iconPlay} alt="Bookmark"/>
-        <p>Play</p>
-       </div>
-    </PlayImage>
-
-       <img src={process.env.PUBLIC_URL + item.thumbnail.regular.large} alt="images"/>
-
-
-         <MovieTexts>
-           <span>{item.year}</span>
-           <span>{item.category}</span>
-           <span>{item.rating}</span>
-         </MovieTexts>
-
-         <p style={{color:'white'}}>{item.title}</p>
-       
+          const {title, isBookmarked} = item;
+          
+          return <MappedDiv key={index}>
+          <div>
+          <BookmarkImage onClick={()=>checkedHandler(title)}>
+            <img src={isBookmarked ? checkedImage  : bookmarkedImage} alt="Bookmark"/>
+         </BookmarkImage>
+  
+         <PlayImage >
+         <div>
+          <img src={iconPlay} alt="Bookmark"/>
+          <p>Play</p>
          </div>
-        </MappedDiv>
-        })}
-
-      </DivContainer>
-      </div>
-     </MainDiv>
+      </PlayImage>
+  
+           <img src={process.env.PUBLIC_URL + item.thumbnail.regular.large} alt="images"/>
+  
+           <MovieTexts>
+             <span>{item.year}</span>
+             <span>{item.category}</span>
+             <span>{item.rating}</span>
+           </MovieTexts>
+  
+           <p style={{color:'white'}}>{item.title}</p>
+         
+           </div>
+          </MappedDiv>
+          })}
+  
+        </DivContainer>
+        </Tablet>
+       </MainDiv>
   )
 }
 
@@ -96,8 +95,6 @@ const MappedDiv = styled.div`
   cursor:pointer;
   border-radius:10px;
  }
-
- 
 
 
  @media screen and (min-width: 615px){
@@ -232,4 +229,10 @@ div:hover{
   opacity:1;
 }
 
+`
+
+const Tablet = styled.div`
+ @media screen and (min-width: 768px){
+   margin-left:80px;
+ }
 `
