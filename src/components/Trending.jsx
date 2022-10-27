@@ -24,7 +24,7 @@ const Trending = ({output}) => {
                     breakpoints: {
                         1920: {
                             fixedWidth: 600,
-                            gap: 60,
+                            gap:60,
                         },
                         1440: {
                             fixedWidth: 400,
@@ -55,5 +55,5 @@ export default Trending;
 
 
 const SpliderComponent = styled.div`
-  margin-top:70px;
+  margin-top:80px;
 `

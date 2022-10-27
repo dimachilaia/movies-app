@@ -89,7 +89,6 @@ export default Home
 const MainDiv = styled.div`
 @media screen and (min-width: 768px){
   display:flex;
-  
 }
 `
 
@@ -113,8 +112,6 @@ const MappedDiv = styled.div`
   border-radius:10px;
  }
 
- 
-
 
  @media screen and (min-width: 615px){
    width:30%;
@@ -125,6 +122,8 @@ const MappedDiv = styled.div`
  }
  @media screen and (min-width: 1024px){
    width:27%;
+
+
    img{
     width:280px;
    }
@@ -132,6 +131,7 @@ const MappedDiv = styled.div`
 
  @media screen and (min-width: 1274px){
    width:24%;
+   
  }
 `
 const TrendingForm = styled.p`
@@ -178,21 +178,19 @@ const DivContainer = styled.div`
 
  @media screen and (min-width: 660px){
   margin-left:20px;
-  margin-left:20px;
  gap:30px;
  }
  @media screen and (min-width: 768px){
   margin-left:0px;
   margin-left:0px;
-  gap:0px;
   margin:0 auto;
  }
  @media screen and (min-width: 1024px){
-  gap:50px;
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
  }
- @media screen and (min-width: 1250px){
-  gap:10px;
- }
+
 `
 
 const BookmarkImage = styled.div`

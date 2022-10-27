@@ -107,7 +107,7 @@ const MappedDiv = styled.div`
  }
 `
 const TrendingForm = styled.p`
- padding-left:20px;
+ padding-left:40px;
  color:white;
  font-size:18px;
 
@@ -115,7 +115,6 @@ const TrendingForm = styled.p`
    width:24%;
    margin-top:50px;
    font-size:22px;
-   padding-left:10px;
  }
 
 `
@@ -138,8 +137,14 @@ const MainHome = styled.div`
 
 const DivContainer = styled.div`
  display:flex;
+ justify-content:space-around;
  flex-wrap:wrap;
- justify-content:space-evenly;
+
+ @media screen and (min-width: 768px){
+  display:flex;
+  justify-content:space-between;
+  margin-left:40px;
+ }
 `
 
 

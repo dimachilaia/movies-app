@@ -156,6 +156,13 @@ const DivContainer = styled.div`
  @media screen and (min-width: 768px){
   margin-left:0px;
  }
+
+ @media screen and (min-width: 1024px){
+  display:flex;
+  align-items:center;
+  margin:0 auto;
+  justify-content:space-between;
+ }
 `
 
 const BookmarkImage = styled.div`

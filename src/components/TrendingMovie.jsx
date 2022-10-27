@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import iconPlay from '../assets/icon-play.svg'
 
 const TrendingMovie = ({item}) => {
 
@@ -23,6 +24,11 @@ const TrendingMovie = ({item}) => {
         <div style={{display:'flex', alignItems:'center'}}>
         <img src={Icon} alt="oval"  style={{width:'12px', height:'10.1px', paddingRight:'5px', opacity:'0.75'}}/>
         <p>{item.category}</p>
+
+        
+            
+
+
         </div>
 
         <p>.{item.rating}</p>
@@ -52,14 +58,15 @@ const TrendingMovieComponent = styled.div`
 
  @media screen and (min-width: 1024px){
     img{
-    width:415px;
+    width:420px;
    }
    
  }
 
- @media screen and (min-width: 1200px){
+
+ @media screen and (min-width: 1400px){
     img{
-    width:415px;
+    width:520px;
    }
  }
 
@@ -117,3 +124,20 @@ const Title = styled.div`
         font-size:25px;
  }
 `
+
+// const PlayImage = styled.div`
+//  display:flex;
+//   align-items:center;
+//   justify-content:center;
+//   border-radius:80%;
+//   mix-blend-mode: normal;
+//   position:absolute;
+//   opacity: 0.2;
+//   transform:translate(40px, 30px);
+//   margin-top:5px;
+
+//   img{
+//     width:50px
+//   }
+
+// `
