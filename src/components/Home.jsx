@@ -25,8 +25,6 @@ const Home = ({data, output, setOutput}) => {
   return (
    <div>
 
-   
-
     <MainDiv>
     
       <MainHome>
@@ -131,7 +129,6 @@ const MappedDiv = styled.div`
 
  @media screen and (min-width: 1274px){
    width:24%;
-   
  }
 `
 const TrendingForm = styled.p`

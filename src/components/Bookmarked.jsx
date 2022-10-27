@@ -5,7 +5,6 @@ import MovieRoutes from './MovieRoutes'
 import styled from 'styled-components'
 import checkedImage from '../assets/icon-bookmark-full.svg'
 import Input from './Input'
-import bookmarkedImage from '../assets/icon-bookmark-empty.svg'
 
 
 const Bookmarked = ({output, setOutput}) => {
@@ -21,16 +20,15 @@ const Bookmarked = ({output, setOutput}) => {
 }
 
 const placeholder = 'Search for Bookmarked Movies'
+const filteredBookmark = output.filter((item)=>item.category === 'isBookmarked')
 
-  return (
+ return (
     <MainDiv >
-     <MainHome>
+      <MainHome>
         <MovieRoutes/>
-     </MainHome>
+      </MainHome>
 
      <div>
-
-     <Input output={output} setOutput={setOutput} placeholder={placeholder} />
 
        
       <TrendingForm>Bookmarked</TrendingForm>
@@ -48,9 +46,9 @@ const placeholder = 'Search for Bookmarked Movies'
          <MovieTexts >
          
          <img src={process.env.PUBLIC_URL + item.thumbnail.regular.large} alt="images" /> 
-           <span>{item.year}</span>
-           <span>{item.category}</span>
-           <span>{item.rating}</span>
+              <span>{item.year}</span>
+              <span>{item.category}</span>
+              <span>{item.rating}</span>
          </MovieTexts>
 
          <p style={{color:'white'}}>{title}</p>
@@ -59,7 +57,7 @@ const placeholder = 'Search for Bookmarked Movies'
         </MappedDiv>
         })}
 
-      </DivContainer>
+       </DivContainer>
       </div>
      </MainDiv>
   )
@@ -107,13 +105,16 @@ const MappedDiv = styled.div`
  }
 `
 const TrendingForm = styled.p`
- padding-left:40px;
  color:white;
  font-size:18px;
+ margin:0 auto;
+ margin-top:25px;
+
 
  @media screen and (min-width: 768px){
    width:24%;
    margin-top:50px;
+   text-align:center;
    font-size:22px;
  }
 
@@ -129,7 +130,6 @@ const MovieTexts = styled.div`
 `
 
 const MainHome = styled.div`
-
  /* @media screen and (min-width: 768px){
    display:flex;
  } */
@@ -137,13 +137,13 @@ const MainHome = styled.div`
 
 const DivContainer = styled.div`
  display:flex;
- justify-content:space-around;
+ justify-content:space-between;
  flex-wrap:wrap;
 
  @media screen and (min-width: 768px){
   display:flex;
-  justify-content:space-between;
-  margin-left:40px;
+  margin-left:70px;
+  justify-content:space-around;
  }
 `
 

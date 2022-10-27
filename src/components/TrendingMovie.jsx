@@ -25,10 +25,6 @@ const TrendingMovie = ({item}) => {
         <img src={Icon} alt="oval"  style={{width:'12px', height:'10.1px', paddingRight:'5px', opacity:'0.75'}}/>
         <p>{item.category}</p>
 
-        
-            
-
-
         </div>
 
         <p>.{item.rating}</p>
@@ -48,6 +44,7 @@ const TrendingMovieComponent = styled.div`
  img{
      width:200px;
      border-radius:10px;
+     cursor:pointer;
  }
 @media screen and (min-width: 768px){
     img{
@@ -62,14 +59,6 @@ const TrendingMovieComponent = styled.div`
    }
    
  }
-
-
- @media screen and (min-width: 1400px){
-    img{
-    width:520px;
-   }
- }
-
 `
 
 const MovieInfo = styled.div`
@@ -83,7 +72,6 @@ const MovieInfo = styled.div`
         left:20px;
         top:55%;
  }
-
     @media screen and (min-width: 1024px){
         left:20px;
         top:65%;
