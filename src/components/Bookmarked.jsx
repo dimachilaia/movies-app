@@ -77,6 +77,7 @@ const MappedDiv = styled.div`
 
   width:40%;
   padding:2px 5px;
+  margin-top:35px;
 
   p{
     font-size:14px;
@@ -95,6 +96,7 @@ const MappedDiv = styled.div`
  }
  @media screen and (min-width: 1024px){
    width:27%;
+   margin-top:35px;
    img{
     width:280px;
    }
